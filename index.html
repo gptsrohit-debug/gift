@@ -1,578 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>A Virtual Flower For My Pookie Bear 🌸💖</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>3 Mahine • Arushi & Rohit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#ff5b8a;
+    --deep:#a8174d;
+    --gold:#f6c66c;
+    --cream:#fff7ee;
+    --plum:#2a0a1a;
+    --shadow:0 30px 60px -20px rgba(168,23,77,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{overflow-x:hidden}
+  body{
+    background:
+      radial-gradient(1200px 700px at 80% -10%, #ffd3e1 0%, transparent 60%),
+      radial-gradient(900px 700px at -10% 30%, #f9e1ff 0%, transparent 60%),
+      radial-gradient(800px 600px at 50% 110%, #ffe7c1 0%, transparent 60%),
+      linear-gradient(180deg,#fff6f0 0%, #ffe8f0 100%);
+    color:var(--plum);
+    font-family:'Cormorant Garamond', serif;
+    min-height:100vh;
+    position:relative;
+  }
 
-    body {
-      min-height: 100vh;
-      background: radial-gradient(ellipse at 50% 0%, #3d0050 0%, #1a0030 40%, #0a0018 100%);
-      font-family: Georgia, 'Times New Roman', serif;
-      overflow-x: hidden;
-    }
+  /* Floating hearts background */
+  .hearts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .hearts span{
+    position:absolute;bottom:-40px;
+    font-size:18px;color:rgba(255,91,138,.55);
+    animation: rise linear infinite;
+    filter: drop-shadow(0 0 8px rgba(255,91,138,.4));
+  }
+  @keyframes rise{
+    0%{transform:translateY(0) rotate(0);opacity:0}
+    10%{opacity:.9}
+    100%{transform:translateY(-110vh) rotate(360deg);opacity:0}
+  }
 
-    /* ── Stars ── */
-    #stars {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 0;
-    }
-    .star {
-      position: absolute; border-radius: 50%;
-      background: #fff;
-      animation: twinkle var(--d) ease-in-out infinite;
-      animation-delay: var(--dl);
-    }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.1; transform: scale(1); }
-      50%       { opacity: 0.9; transform: scale(1.8); }
-    }
+  /* Petals */
+  .petal{position:fixed;top:-30px;width:14px;height:14px;border-radius:60% 0 60% 0;
+    background:linear-gradient(135deg,#ffb6c8,#ff5b8a);
+    opacity:.7;animation:fall linear infinite;z-index:0;pointer-events:none;
+    filter:drop-shadow(0 2px 4px rgba(168,23,77,.2))}
+  @keyframes fall{
+    0%{transform:translateY(-10vh) rotate(0)}
+    100%{transform:translateY(110vh) rotate(720deg)}
+  }
 
-    /* ── Balloons Layer ── */
-    #balloons {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 1;
-      overflow: hidden;
-    }
+  /* HERO */
+  .hero{
+    position:relative;z-index:2;
+    min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:6vh 1.5rem;
+  }
+  .badge{
+    font-family:'Playfair Display',serif;
+    letter-spacing:.4em;text-transform:uppercase;font-size:.78rem;
+    color:var(--deep);background:rgba(255,255,255,.7);
+    padding:.6rem 1.4rem;border-radius:999px;
+    border:1px solid rgba(168,23,77,.18);
+    backdrop-filter: blur(6px);
+    box-shadow:0 10px 30px -15px rgba(168,23,77,.4);
+  }
+  .hero h1{
+    font-family:'Tangerine', cursive;
+    font-weight:700;
+    font-size: clamp(5rem, 18vw, 13rem);
+    line-height:.95;
+    margin-top:1.5rem;
+    background:linear-gradient(120deg,#ff3d7f 0%,#a8174d 40%,#d4a056 75%,#ff5b8a 100%);
+    background-size:300% 300%;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation: shimmer 8s ease infinite;
+    text-shadow: 0 4px 30px rgba(255,91,138,.2);
+  }
+  @keyframes shimmer{
+    0%,100%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+  }
+  .hero .amp{
+    font-family:'Playfair Display',serif;font-style:italic;
+    font-size:clamp(1.4rem,3vw,2rem);color:var(--deep);
+    margin:.3rem 0 .2rem;letter-spacing:.05em;
+  }
+  .hero .meta{
+    margin-top:1.4rem;font-family:'Playfair Display',serif;
+    font-style:italic;font-size:clamp(1rem,2.2vw,1.25rem);
+    color:#7a2f4d;max-width:640px;line-height:1.7;
+  }
+  .date-chip{
+    display:inline-flex;gap:.6rem;align-items:center;
+    margin-top:1.8rem;
+    padding:.7rem 1.4rem;border-radius:999px;
+    background:linear-gradient(120deg, rgba(255,91,138,.9), rgba(168,23,77,.9));
+    color:#fff;font-family:'Playfair Display',serif;
+    letter-spacing:.18em;text-transform:uppercase;font-size:.78rem;
+    box-shadow:var(--shadow);
+  }
+  .scroll-hint{
+    position:absolute;bottom:30px;left:50%;transform:translateX(-50%);
+    font-family:'Playfair Display',serif;font-style:italic;color:#a8174d;
+    font-size:.85rem;letter-spacing:.3em;text-transform:uppercase;
+    opacity:.7;animation:bob 2.4s ease-in-out infinite;
+  }
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
-    .balloon-wrap {
-      position: absolute;
-      bottom: -220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: rise linear both;
-    }
+  /* SECTIONS */
+  section.story{
+    position:relative;z-index:2;
+    max-width:880px;margin:0 auto;padding:9vh 1.5rem;
+  }
+  .section-title{
+    font-family:'Tangerine',cursive;font-weight:700;
+    font-size:clamp(3rem,8vw,5.2rem);
+    text-align:center;color:var(--deep);
+    line-height:1;margin-bottom:.5rem;
+  }
+  .section-sub{
+    text-align:center;font-family:'Playfair Display',serif;font-style:italic;
+    color:#7a2f4d;letter-spacing:.2em;text-transform:uppercase;
+    font-size:.78rem;margin-bottom:3rem;
+  }
 
-    .balloon-body {
-      position: relative;
-      border-radius: 50%;
-      flex-shrink: 0;
-      /* highlight */
-    }
-    .balloon-body::before {
-      content: '';
-      position: absolute;
-      top: 14%; left: 16%;
-      width: 30%; height: 22%;
-      background: rgba(255,255,255,0.45);
-      border-radius: 50%;
-      transform: rotate(-30deg);
-    }
-    /* knot triangle */
-    .balloon-body::after {
-      content: '';
-      position: absolute;
-      bottom: -11px; left: 50%;
-      transform: translateX(-50%);
-      width: 0; height: 0;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 12px solid var(--knot);
-    }
-    .balloon-string {
-      width: 1.5px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.55), rgba(255,255,255,0.15));
-    }
+  /* Shayari card */
+  .shayari{
+    position:relative;
+    background:linear-gradient(160deg, rgba(255,255,255,.85), rgba(255,233,243,.75));
+    border:1px solid rgba(168,23,77,.18);
+    border-radius:24px;
+    padding:3rem 2rem;
+    margin:1.5rem auto;
+    max-width:720px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    backdrop-filter: blur(10px);
+    transform: translateY(40px);opacity:0;
+    transition: transform 1s cubic-bezier(.2,.7,.2,1), opacity 1s;
+  }
+  .shayari.in{transform:translateY(0);opacity:1}
+  .shayari::before{
+    content:"❝";position:absolute;top:-30px;left:30px;
+    font-family:'Playfair Display',serif;font-size:6rem;
+    color:var(--rose);opacity:.35;line-height:1;
+  }
+  .shayari::after{
+    content:"❞";position:absolute;bottom:-60px;right:30px;
+    font-family:'Playfair Display',serif;font-size:6rem;
+    color:var(--gold);opacity:.4;line-height:1;
+  }
+  .shayari p{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;font-weight:500;
+    font-size:clamp(1.15rem,2.5vw,1.5rem);
+    line-height:2;color:#3b0e25;
+    letter-spacing:.01em;
+  }
+  .shayari .title{
+    font-family:'Dancing Script',cursive;
+    color:var(--deep);font-style:normal;font-weight:700;
+    font-size:1.4rem;display:block;margin-bottom:1rem;
+    letter-spacing:.04em;
+  }
+  .shayari .sign{
+    display:block;margin-top:1.6rem;
+    font-family:'Dancing Script',cursive;
+    color:var(--rose);font-size:1.3rem;
+  }
 
-    @keyframes rise {
-      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
-      6%   { opacity: 1; }
-      94%  { opacity: 0.85; }
-      100% { transform: translateY(-130vh) rotate(var(--spin)); opacity: 0; }
-    }
+  /* Timeline */
+  .timeline{
+    display:grid;grid-template-columns:1fr;gap:1.2rem;
+    max-width:720px;margin:2rem auto 0;
+  }
+  .month{
+    display:grid;grid-template-columns:90px 1fr;gap:1.5rem;align-items:center;
+    background:rgba(255,255,255,.75);
+    border:1px solid rgba(168,23,77,.15);
+    border-radius:18px;padding:1.4rem 1.6rem;
+    box-shadow:0 15px 40px -25px rgba(168,23,77,.4);
+    transform:translateX(-30px);opacity:0;
+    transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .9s;
+  }
+  .month.in{transform:translateX(0);opacity:1}
+  .month .num{
+    font-family:'Tangerine',cursive;font-weight:700;
+    font-size:4.5rem;line-height:1;color:var(--rose);
+    text-align:center;
+  }
+  .month h3{
+    font-family:'Playfair Display',serif;
+    color:var(--deep);font-size:1.15rem;letter-spacing:.05em;
+    margin-bottom:.3rem;
+  }
+  .month p{
+    font-family:'Cormorant Garamond',serif;
+    color:#5a2236;font-size:1.05rem;line-height:1.55;font-style:italic;
+  }
 
-    /* ── Floating particles ── */
-    #particles {
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none; z-index: 2;
-      overflow: hidden;
-    }
-    .pt {
-      position: absolute; bottom: -40px;
-      animation: ptRise linear infinite; opacity: 0;
-    }
-    @keyframes ptRise {
-      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
-      12%  { opacity: 0.9; }
-      88%  { opacity: 0.5; }
-      100% { transform: translateY(-110vh) rotate(540deg); opacity: 0; }
-    }
+  /* Promise card */
+  .promise{
+    position:relative;z-index:2;
+    max-width:760px;margin:6vh auto 0;padding:0 1.5rem;
+  }
+  .promise-inner{
+    background:linear-gradient(135deg,#fff,#ffe9f0);
+    border:2px solid rgba(168,23,77,.25);
+    border-radius:24px;padding:3rem 2rem;
+    text-align:center;
+    box-shadow:var(--shadow);
+    position:relative;overflow:hidden;
+  }
+  .promise-inner::before{
+    content:"";position:absolute;inset:-2px;
+    background:linear-gradient(45deg,transparent,rgba(246,198,108,.4),transparent);
+    background-size:200% 200%;
+    animation:gold 6s linear infinite;
+    z-index:-1;border-radius:24px;
+  }
+  @keyframes gold{0%{background-position:0 0}100%{background-position:200% 200%}}
+  .promise h2{
+    font-family:'Tangerine',cursive;
+    font-size:clamp(3rem,8vw,5rem);color:var(--deep);
+    line-height:1;margin-bottom:.5rem;
+  }
+  .promise p{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:clamp(1.1rem,2.3vw,1.35rem);line-height:1.9;
+    color:#3b0e25;max-width:600px;margin:1rem auto;
+  }
 
-    /* ── Page layout ── */
-    .page {
-      position: relative; z-index: 10;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 28px 16px 40px;
-      gap: 10px;
-    }
+  /* Heart button */
+  .heart-btn{
+    margin:2.5rem auto 0;display:block;
+    background:linear-gradient(135deg,#ff3d7f,#a8174d);
+    color:#fff;border:none;
+    padding:1.1rem 2.4rem;border-radius:999px;
+    font-family:'Playfair Display',serif;
+    letter-spacing:.3em;text-transform:uppercase;font-size:.8rem;
+    cursor:pointer;box-shadow:var(--shadow);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .heart-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 25px 50px -15px rgba(168,23,77,.6)}
+  .heart-btn:active{transform:translateY(0) scale(.98)}
 
-    /* ── Heading ── */
-    .heading {
-      color: #fff; font-size: 1.9rem; text-align: center;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 30px rgba(255,130,190,0.95),
-                   0 0 70px rgba(200,0,120,0.5);
-      animation: titleGlow 2.5s ease-in-out infinite;
-    }
-    @keyframes titleGlow {
-      0%,100% { text-shadow: 0 0 30px rgba(255,130,190,0.9), 0 0 70px rgba(200,0,120,0.5); }
-      50%      { text-shadow: 0 0 55px rgba(255,170,210,1),  0 0 110px rgba(220,0,140,0.75); }
-    }
-    .sub {
-      color: #f0b8d8; font-size: 1rem; font-style: italic;
-      letter-spacing: 2.5px; text-align: center;
-    }
+  /* Footer */
+  footer{
+    position:relative;z-index:2;
+    text-align:center;padding:6vh 1rem 4vh;
+    font-family:'Playfair Display',serif;font-style:italic;
+    color:#7a2f4d;font-size:.95rem;
+  }
+  footer .signature{
+    font-family:'Tangerine',cursive;font-size:3rem;color:var(--deep);
+    line-height:1;display:block;margin-top:.4rem;
+  }
 
-    /* ══════════════════════════════
-       FLOWER
-    ══════════════════════════════ */
-    .flower-scene {
-      position: relative;
-      width: 300px; height: 380px;
-      flex-shrink: 0;
-    }
+  /* Burst effect */
+  .burst{position:fixed;pointer-events:none;z-index:50}
+  .burst span{
+    position:absolute;font-size:24px;
+    animation: burst 1.4s ease-out forwards;
+  }
+  @keyframes burst{
+    0%{transform:translate(0,0) scale(.5);opacity:1}
+    100%{transform:translate(var(--x),var(--y)) scale(1.6);opacity:0}
+  }
 
-    /* Ambient glow behind flower */
-    .flower-glow {
-      position: absolute;
-      left: 50%; top: 36%;
-      transform: translate(-50%, -50%);
-      width: 260px; height: 260px;
-      border-radius: 50%;
-      background: radial-gradient(circle,
-        rgba(255, 80, 160, 0.38) 0%,
-        rgba(180, 0,  100, 0.18) 45%,
-        transparent 70%);
-      animation: glowPulse 3.2s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes glowPulse {
-      0%,100% { transform: translate(-50%,-50%) scale(1);    opacity: 0.8; }
-      50%      { transform: translate(-50%,-50%) scale(1.18); opacity: 1; }
-    }
-
-    /* Sway wrapper — origin at base of stem */
-    .f-sway {
-      position: absolute; left: 0; top: 0;
-      width: 100%; height: 100%;
-      transform-origin: 150px 378px;
-      animation: sway 5s ease-in-out infinite;
-      animation-delay: 3.2s;
-    }
-    @keyframes sway {
-      0%,100% { transform: rotate(0deg); }
-      28%  { transform: rotate(4.5deg); }
-      72%  { transform: rotate(-4.5deg); }
-    }
-
-    /* Stem */
-    .f-stem {
-      position: absolute;
-      left: 146px; top: 148px;
-      width: 8px; height: 225px;
-      background: linear-gradient(to bottom, #66bb6a 0%, #388e3c 50%, #1b5e20 100%);
-      border-radius: 4px 4px 3px 3px;
-      transform-origin: top center;
-      transform: scaleY(0);
-      animation: stemGrow 0.75s ease-out forwards 0.1s;
-    }
-    @keyframes stemGrow { to { transform: scaleY(1); } }
-
-    /* Leaves */
-    .f-leaf {
-      position: absolute;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #81c784, #2e7d32);
-      box-shadow: inset -2px -2px 6px rgba(0,0,0,0.2);
-      opacity: 0;
-      animation: leafFade 0.45s ease-out forwards;
-    }
-    .f-leaf-a { width: 60px; height: 26px; left:  82px; top: 248px; transform: rotate(-42deg); transform-origin: right center; animation-delay: 0.4s; }
-    .f-leaf-b { width: 55px; height: 24px; left: 158px; top: 278px; transform: rotate( 36deg); transform-origin: left  center; animation-delay: 0.6s; }
-    .f-leaf-c { width: 48px; height: 22px; left:  88px; top: 308px; transform: rotate(-28deg); transform-origin: right center; animation-delay: 0.85s; }
-    @keyframes leafFade { to { opacity: 1; } }
-
-    /* Flower head pivot */
-    .f-pivot {
-      position: absolute;
-      left: 150px; top: 148px;
-      width: 0; height: 0;
-    }
-
-    /* ── Petal base ── */
-    .p-outer {
-      position: absolute;
-      width: 70px; height: 118px;
-      bottom: 0; left: -35px;
-      border-radius: 52% 52% 40% 40%;
-      background: linear-gradient(180deg,
-        #ffe0ed 0%,
-        #ff85a1 38%,
-        #e91e8c 75%,
-        #880e4f 100%);
-      box-shadow:
-        inset  2px  4px 10px rgba(255,180,210,0.5),
-        inset -2px -6px 14px rgba(120,0,60,0.35),
-        0 3px 10px rgba(150,0,80,0.25);
-      transform-origin: 50% 100%;
-      transform: rotate(calc(var(--i) * 45deg)) scaleY(0);
-      opacity: 0;
-      animation: bloomOuter 0.65s cubic-bezier(0.34,1.56,0.64,1) both;
-      animation-delay: calc(var(--i) * 0.1s + 0.38s);
-    }
-    @keyframes bloomOuter {
-      0%   { transform: rotate(calc(var(--i)*45deg)) scaleY(0); opacity: 0; }
-      35%  { opacity: 1; }
-      100% { transform: rotate(calc(var(--i)*45deg)) scaleY(1); opacity: 1; }
-    }
-
-    .p-mid {
-      position: absolute;
-      width: 52px; height: 88px;
-      bottom: 0; left: -26px;
-      border-radius: 52% 52% 38% 38%;
-      background: linear-gradient(180deg,
-        #fce4ec 0%,
-        #f06292 38%,
-        #c2185b 75%,
-        #880e4f 100%);
-      box-shadow:
-        inset  2px  3px  8px rgba(255,150,190,0.45),
-        inset -2px -5px 12px rgba(100,0,50,0.35);
-      transform-origin: 50% 100%;
-      transform: rotate(calc(var(--i)*45deg + 22.5deg)) scaleY(0);
-      opacity: 0;
-      animation: bloomMid 0.55s cubic-bezier(0.34,1.56,0.64,1) both;
-      animation-delay: calc(var(--i)*0.08s + 1.2s);
-    }
-    @keyframes bloomMid {
-      0%   { transform: rotate(calc(var(--i)*45deg+22.5deg)) scaleY(0); opacity: 0; }
-      35%  { opacity: 1; }
-      100% { transform: rotate(calc(var(--i)*45deg+22.5deg)) scaleY(1); opacity: 1; }
-    }
-
-    .p-inner {
-      position: absolute;
-      width: 36px; height: 60px;
-      bottom: 0; left: -18px;
-      border-radius: 52% 52% 38% 38%;
-      background: linear-gradient(180deg,
-        #f8bbd0 0%,
-        #e91e8c 45%,
-        #880e4f 80%,
-        #4a0026 100%);
-      box-shadow:
-        inset  1px  2px  6px rgba(255,120,170,0.4),
-        inset -1px -4px  8px rgba(80,0,40,0.45);
-      transform-origin: 50% 100%;
-      transform: rotate(calc(var(--i)*51.4deg)) scaleY(0);
-      opacity: 0;
-      animation: bloomInner 0.45s cubic-bezier(0.34,1.56,0.64,1) both;
-      animation-delay: calc(var(--i)*0.07s + 1.9s);
-    }
-    @keyframes bloomInner {
-      0%   { transform: rotate(calc(var(--i)*51.4deg)) scaleY(0); opacity: 0; }
-      35%  { opacity: 1; }
-      100% { transform: rotate(calc(var(--i)*51.4deg)) scaleY(1); opacity: 1; }
-    }
-
-    /* Center */
-    .f-ctr-ring {
-      position: absolute;
-      width: 72px; height: 72px; border-radius: 50%;
-      left: -36px; top: -36px;
-      background: radial-gradient(circle at 34% 32%,
-        #fffde7,
-        #fdd835 42%,
-        #f57f17 78%,
-        #e65100 100%);
-      box-shadow:
-        0 0 22px rgba(255,200,0,0.85),
-        0 0 50px rgba(255,140,0,0.45),
-        0 4px 12px rgba(0,0,0,0.3);
-      z-index: 20;
-      transform: scale(0); opacity: 0;
-      animation: ctBloom 0.5s ease-out both;
-      animation-delay: 2.45s;
-    }
-    .f-ctr-mid {
-      position: absolute;
-      width: 44px; height: 44px; border-radius: 50%;
-      left: -22px; top: -22px;
-      background: radial-gradient(circle at 38% 36%,
-        #fff9c4,
-        #fbc02d 48%,
-        #e65100 100%);
-      box-shadow: 0 0 10px rgba(255,180,0,0.6);
-      z-index: 21;
-      transform: scale(0); opacity: 0;
-      animation: ctBloom 0.4s ease-out both;
-      animation-delay: 2.65s;
-    }
-    @keyframes ctBloom { to { transform: scale(1); opacity: 1; } }
-
-    /* Pollen dots */
-    .pol {
-      position: absolute;
-      width: 7px; height: 7px; border-radius: 50%;
-      background: #fffde7;
-      box-shadow: 0 0 4px rgba(255,230,80,0.8);
-      z-index: 22;
-      transform: scale(0); opacity: 0;
-      animation: ctBloom 0.3s ease-out both;
-    }
-
-    /* ── Message Card ── */
-    .card {
-      background: rgba(255,255,255,0.08);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(255,160,210,0.28);
-      border-radius: 24px;
-      padding: 28px 38px;
-      max-width: 430px;
-      width: 100%;
-      text-align: center;
-      box-shadow:
-        0 8px 40px rgba(200,0,100,0.25),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-    }
-    .card-icon {
-      font-size: 2.6rem;
-      display: block;
-      margin-bottom: 12px;
-      animation: iconPop 2s ease-in-out infinite;
-    }
-    @keyframes iconPop {
-      0%,100% { transform: scale(1) rotate(0deg); }
-      50%      { transform: scale(1.15) rotate(5deg); }
-    }
-    .card-main {
-      color: #fff;
-      font-size: 1.3rem;
-      line-height: 1.75;
-      text-shadow: 0 0 14px rgba(255,150,200,0.45);
-    }
-    .card-main em {
-      font-style: normal;
-      color: #ffb3d1;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .card-sub {
-      color: #e0a0c8;
-      font-size: 0.95rem;
-      margin-top: 10px;
-      font-style: italic;
-      line-height: 1.6;
-    }
-    .card-hearts {
-      font-size: 1.6rem;
-      margin-top: 14px;
-      animation: heartBeat 1.4s ease-in-out infinite;
-      display: block;
-    }
-    @keyframes heartBeat {
-      0%,100% { transform: scale(1); }
-      14%      { transform: scale(1.18); }
-      28%      { transform: scale(1); }
-      42%      { transform: scale(1.12); }
-      56%      { transform: scale(1); }
-    }
-
-    /* ── Name tag at bottom ── */
-    .name-tag {
-      color: rgba(255,200,230,0.6);
-      font-size: 0.82rem;
-      letter-spacing: 3px;
-      text-align: center;
-      margin-top: 4px;
-    }
-  </style>
+  @media (max-width: 600px){
+    .month{grid-template-columns:60px 1fr;gap:1rem;padding:1.1rem}
+    .month .num{font-size:3.4rem}
+    .shayari{padding:2.3rem 1.4rem}
+    .shayari p{line-height:1.85}
+  }
+</style>
 </head>
 <body>
 
-<div id="stars"></div>
-<div id="balloons"></div>
-<div id="particles"></div>
+<div class="hearts" id="hearts"></div>
 
-<div class="page">
-  <h1 class="heading">🌸 A Virtual Flower For You 🌸</h1>
-  <p class="sub">— my darling pookie bear —</p>
+<!-- HERO -->
+<section class="hero">
+  <span class="badge">25 March → 25 June 2026</span>
+  <h1>Arushi</h1>
+  <span class="amp">&amp;</span>
+  <h1 style="font-size:clamp(3.5rem,12vw,8rem);">Rohit</h1>
+  <p class="meta">
+    Teen mahine pehle aaj hi ke din,<br/>
+    maine dil ki baat keh di thi…<br/>
+    aur tune meri zindagi haseen kar di thi. 💗
+  </p>
+  <div class="date-chip">✦ Happy 3 Month Anniversary ✦</div>
+  <div class="scroll-hint">scroll for our story</div>
+</section>
 
-  <!-- ════ FLOWER ════ -->
-  <div class="flower-scene">
-    <div class="flower-glow"></div>
-    <div class="f-sway">
-      <!-- Stem & leaves -->
-      <div class="f-stem"></div>
-      <div class="f-leaf f-leaf-a"></div>
-      <div class="f-leaf f-leaf-b"></div>
-      <div class="f-leaf f-leaf-c"></div>
+<!-- THE DAY -->
+<section class="story">
+  <h2 class="section-title">Wo Din</h2>
+  <p class="section-sub">25 March 2026 • The day I asked</p>
 
-      <!-- All petals radiate from this pivot (at stem top) -->
-      <div class="f-pivot">
-        <!-- Outer 8 petals -->
-        <div class="p-outer" style="--i:0"></div>
-        <div class="p-outer" style="--i:1"></div>
-        <div class="p-outer" style="--i:2"></div>
-        <div class="p-outer" style="--i:3"></div>
-        <div class="p-outer" style="--i:4"></div>
-        <div class="p-outer" style="--i:5"></div>
-        <div class="p-outer" style="--i:6"></div>
-        <div class="p-outer" style="--i:7"></div>
-        <!-- Middle 8 petals (offset 22.5°) -->
-        <div class="p-mid" style="--i:0"></div>
-        <div class="p-mid" style="--i:1"></div>
-        <div class="p-mid" style="--i:2"></div>
-        <div class="p-mid" style="--i:3"></div>
-        <div class="p-mid" style="--i:4"></div>
-        <div class="p-mid" style="--i:5"></div>
-        <div class="p-mid" style="--i:6"></div>
-        <div class="p-mid" style="--i:7"></div>
-        <!-- Inner 7 petals (360/7 = 51.4°) -->
-        <div class="p-inner" style="--i:0"></div>
-        <div class="p-inner" style="--i:1"></div>
-        <div class="p-inner" style="--i:2"></div>
-        <div class="p-inner" style="--i:3"></div>
-        <div class="p-inner" style="--i:4"></div>
-        <div class="p-inner" style="--i:5"></div>
-        <div class="p-inner" style="--i:6"></div>
-        <!-- Golden center -->
-        <div class="f-ctr-ring"></div>
-        <div class="f-ctr-mid"></div>
-        <!-- Pollen dots (6, in a ring) -->
-        <div class="pol" style="left:-3px;  top:-24px; animation-delay:2.8s;"></div>
-        <div class="pol" style="left:16px;  top:-16px; animation-delay:2.85s;"></div>
-        <div class="pol" style="left:20px;  top:5px;   animation-delay:2.9s;"></div>
-        <div class="pol" style="left:5px;   top:20px;  animation-delay:2.95s;"></div>
-        <div class="pol" style="left:-16px; top:14px;  animation-delay:3.0s;"></div>
-        <div class="pol" style="left:-21px; top:-7px;  animation-delay:3.05s;"></div>
+  <div class="shayari reveal">
+    <span class="title">— Pehla Iqraar —</span>
+    <p>
+      Teri ek nazar ne dil ko chura liya,<br/>
+      pehli mulaqat mein hi tujhe apna bana liya,<br/>
+      himmat jutaa ke jo maine kaha tha us roz —<br/>
+      "Kya tum meri ho jaogi?"<br/>
+      aur tune muskura ke <em>"haan"</em> kaha tha.
+    </p>
+    <span class="sign">— tera Rohit</span>
+  </div>
+
+  <div class="shayari reveal">
+    <span class="title">— Wo Pal —</span>
+    <p>
+      Dil dhadak raha tha, haath kaanp rahe the,<br/>
+      lafz toot rahe the, par aankhein keh rahi thi sab,<br/>
+      tu thi saamne, aur duniya theher si gayi thi —<br/>
+      bas ek "haan" ne meri saari duaayein qubool kar di thi.
+    </p>
+  </div>
+</section>
+
+<!-- 3 MONTHS -->
+<section class="story">
+  <h2 class="section-title">Teen Mahine</h2>
+  <p class="section-sub">Our little forever, so far</p>
+
+  <div class="timeline">
+    <div class="month reveal-x">
+      <div class="num">1</div>
+      <div>
+        <h3>APRIL — Naye rishte ka aagaaz</h3>
+        <p>Pehla mahina, pehli baatein, pehli si nayi muskaanein. Har message pe dil dhadakta tha — abhi bhi waisa hi dhadakta hai.</p>
+      </div>
+    </div>
+    <div class="month reveal-x">
+      <div class="num">2</div>
+      <div>
+        <h3>MAY — Tum aadat ban gayi</h3>
+        <p>Subah ka "good morning", raat ka "so jao jaan" — tu meri din ki shuruaat aur raat ki sukoon ban gayi.</p>
+      </div>
+    </div>
+    <div class="month reveal-x">
+      <div class="num">3</div>
+      <div>
+        <h3>JUNE — Tum meri duniya ho</h3>
+        <p>Aaj, teen mahine baad — yeh keh sakta hoon poori zimmedaari se: tujhse pyaar karna meri zindagi ka sabse sahi faisla tha.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ════ MESSAGE CARD ════ -->
-  <div class="card">
-    <span class="card-icon">🌹</span>
-    <div class="card-main">
-      This virtual flower was made<br>
-      with all my love, just for you —<br>
-      <em>my Pookie Bear 🐻</em>
-    </div>
-    <p class="card-sub">
-      Just like this flower blooms beautifully,<br>
-      my love for you grows more every single day.
+<!-- SHAYARI SECTION -->
+<section class="story">
+  <h2 class="section-title">Shayari • Tere Naam</h2>
+  <p class="section-sub">Words I couldn't say out loud</p>
+
+  <div class="shayari reveal">
+    <span class="title">— Teri Yaad —</span>
+    <p>
+      Subah uthte hi pehla khayal teri yaad ka aata hai,<br/>
+      raat ko sone se pehle teri muskaan dikh jaati hai,<br/>
+      tujhe paake aisa lagta hai jaise sab kuch mil gaya —<br/>
+      khuda ka shukar, jo tujhe mere hisse mein bhej diya.
     </p>
-    <span class="card-hearts">💖 💕 💗 💓 💖</span>
   </div>
 
-  <p class="name-tag">✦ forever &amp; always ✦</p>
+  <div class="shayari reveal">
+    <span class="title">— Meri Arushi —</span>
+    <p>
+      Naam tera Arushi — yaani <em>"pehli kiran"</em>,<br/>
+      aur sach mein, tu hi hai meri har subah ki roshni,<br/>
+      andheri raaton mein tu chand banke aayi,<br/>
+      aur meri zindagi ke har kone ko jagmaga gayi.
+    </p>
+  </div>
+
+  <div class="shayari reveal">
+    <span class="title">— Wada —</span>
+    <p>
+      Na main badlunga, na yeh ishq purana hoga,<br/>
+      teri haar khushi mein tera deewana hoga,<br/>
+      teen mahine to bas shuruaat hai meri jaan —<br/>
+      pura jeevan tere naam, yeh mera afsana hoga.
+    </p>
+    <span class="sign">— hamesha tera, Rohit</span>
+  </div>
+</section>
+
+<!-- PROMISE -->
+<div class="promise">
+  <div class="promise-inner">
+    <h2>For you, Arushi</h2>
+    <p>
+      Yeh teen mahine sirf ek shuruaat hain.<br/>
+      Aage saath chalne wale lambe safar ka pehla padaav.
+    </p>
+    <p style="color:var(--deep);font-weight:500;">
+      Main wada karta hoon —<br/>
+      teri har khushi mein hasunga,<br/>
+      teri har takleef mein khada rahunga,<br/>
+      aur har 25 taarikh ko, tujhe yaad dilaunga ki —<br/>
+      <strong style="font-style:normal;">tum meri sabse khoobsurat haan ho.</strong>
+    </p>
+    <button class="heart-btn" id="loveBtn">Press for love ♥</button>
+  </div>
 </div>
 
+<footer>
+  <p>Made with every beat of my heart, only for you.</p>
+  <span class="signature">— Rohit ♥ Arushi —</span>
+  <p style="margin-top:.6rem;opacity:.7">25.03.2026 → forever</p>
+</footer>
+
 <script>
-/* ── Stars ── */
-const starsEl = document.getElementById('stars');
-for (let i = 0; i < 90; i++) {
-  const s = document.createElement('div');
-  s.className = 'star';
-  const sz = 1 + Math.random() * 2;
-  s.style.cssText = `
-    left:${Math.random()*100}vw; top:${Math.random()*100}vh;
-    width:${sz}px; height:${sz}px;
-    --d:${2+Math.random()*3.5}s; --dl:${Math.random()*5}s;
-  `;
-  starsEl.appendChild(s);
-}
+  // floating hearts
+  const heartsBox = document.getElementById('hearts');
+  const emojis = ['♥','❤','💕','💗','🌸','✿'];
+  function spawnHeart(){
+    const s = document.createElement('span');
+    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    s.style.left = Math.random()*100+'vw';
+    s.style.fontSize = (12 + Math.random()*22)+'px';
+    s.style.animationDuration = (8 + Math.random()*10)+'s';
+    s.style.opacity = .4 + Math.random()*.5;
+    heartsBox.appendChild(s);
+    setTimeout(()=>s.remove(), 18000);
+  }
+  for(let i=0;i<25;i++) setTimeout(spawnHeart, i*400);
+  setInterval(spawnHeart, 700);
 
-/* ── Balloons ── */
-const balEl = document.getElementById('balloons');
-const COLORS = [
-  ['#ff6b9d','#d94080'],['#ff4757','#c0001f'],['#a855f7','#7c22c5'],
-  ['#ffd700','#c8a000'],['#ff8c69','#d85030'],['#fd79a8','#c04070'],
-  ['#e040fb','#a800d0'],['#00cec9','#009490'],['#fdcb6e','#c89020'],
-  ['#6c5ce7','#4830b8'],['#ff7675','#cc3030'],['#a29bfe','#6c60cc'],
-];
+  // petals
+  for(let i=0;i<14;i++){
+    const p = document.createElement('div');
+    p.className='petal';
+    p.style.left = Math.random()*100+'vw';
+    p.style.animationDuration = (10 + Math.random()*12)+'s';
+    p.style.animationDelay = (-Math.random()*15)+'s';
+    p.style.background = `linear-gradient(135deg, hsl(${330+Math.random()*30},90%,${75+Math.random()*10}%), hsl(${340+Math.random()*20},80%,60%))`;
+    document.body.appendChild(p);
+  }
 
-function mkBalloon() {
-  const [fill, knot] = COLORS[Math.floor(Math.random() * COLORS.length)];
-  const w  = 52 + Math.random() * 42;
-  const h  = w * (1.18 + Math.random() * 0.1);
-  const sl = 65 + Math.random() * 60;
-  const dur = 10 + Math.random() * 14;
-  const spin = (Math.random() > 0.5 ? 1 : -1) * (6 + Math.random() * 18);
-  const left = 2 + Math.random() * 96;
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+      }
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.reveal, .reveal-x, .month, .shayari').forEach(el=>io.observe(el));
 
-  const wrap = document.createElement('div');
-  wrap.className = 'balloon-wrap';
-  wrap.style.cssText = `
-    left:${left}vw;
-    --spin:${spin}deg;
-    animation-duration:${dur}s;
-    animation-delay:-${Math.random() * dur}s;
-  `;
-
-  const body = document.createElement('div');
-  body.className = 'balloon-body';
-  body.style.cssText = `
-    --knot:${knot};
-    width:${w}px; height:${h}px;
-    background: radial-gradient(circle at 30% 28%,
-      ${lighten(fill, 65)} 0%,
-      ${fill} 52%,
-      ${knot} 100%);
-  `;
-
-  const str = document.createElement('div');
-  str.className = 'balloon-string';
-  str.style.cssText = `height:${sl}px;`;
-
-  wrap.appendChild(body);
-  wrap.appendChild(str);
-  balEl.appendChild(wrap);
-  setTimeout(() => wrap.remove(), (dur + 3) * 1000);
-}
-
-function lighten(hex, amt) {
-  const r = Math.min(255, parseInt(hex.slice(1,3),16) + amt);
-  const g = Math.min(255, parseInt(hex.slice(3,5),16) + amt);
-  const b = Math.min(255, parseInt(hex.slice(5,7),16) + amt);
-  return `rgb(${r},${g},${b})`;
-}
-
-// Staggered initial burst
-for (let i = 0; i < 18; i++) setTimeout(mkBalloon, i * 250);
-setInterval(mkBalloon, 1600);
-
-/* ── Floating particles ── */
-const ptEl = document.getElementById('particles');
-const PT = ['✨','💫','🌸','🌺','🌷','💖','💕','🍃','⭐','🌟'];
-
-function mkParticle() {
-  const p = document.createElement('span');
-  p.className = 'pt';
-  const dur = 10 + Math.random() * 12;
-  p.style.cssText = `
-    left:${Math.random()*100}vw;
-    font-size:${0.65+Math.random()*1.2}rem;
-    animation-duration:${dur}s;
-    animation-delay:${Math.random()*4}s;
-  `;
-  p.textContent = PT[Math.floor(Math.random() * PT.length)];
-  ptEl.appendChild(p);
-  setTimeout(() => p.remove(), (dur+4)*1000);
-}
-
-setInterval(mkParticle, 700);
-for (let i = 0; i < 10; i++) setTimeout(mkParticle, i * 180);
+  // love button burst
+  const btn = document.getElementById('loveBtn');
+  const sayings = [
+    "I love you, Arushi 💗",
+    "Tum meri jaan ho ♥",
+    "Forever yours 🌹",
+    "3 mahine, ananth pyaar ✨",
+    "Tum ho toh sab hai 💕"
+  ];
+  let i=0;
+  btn.addEventListener('click', (ev)=>{
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width/2;
+    const cy = rect.top + rect.height/2;
+    const burst = document.createElement('div');
+    burst.className='burst';
+    burst.style.left = cx+'px';
+    burst.style.top = cy+'px';
+    document.body.appendChild(burst);
+    for(let k=0;k<14;k++){
+      const s = document.createElement('span');
+      s.textContent = ['💖','💗','💕','✨','🌹'][k%5];
+      const ang = (k/14)*Math.PI*2;
+      const dist = 80 + Math.random()*80;
+      s.style.setProperty('--x', Math.cos(ang)*dist+'px');
+      s.style.setProperty('--y', Math.sin(ang)*dist+'px');
+      burst.appendChild(s);
+    }
+    setTimeout(()=>burst.remove(), 1500);
+    btn.textContent = sayings[i++ % sayings.length];
+  });
 </script>
 </body>
 </html>
